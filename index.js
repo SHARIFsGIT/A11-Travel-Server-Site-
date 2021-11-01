@@ -10,14 +10,11 @@ const port = process.env.PORT || 5000;
 
 // firebase admin initialization 
 
-
-
 var serviceAccount = require("./tourism-492c1-firebase-adminsdk-ktcry-57e13eaf0b.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
-
 
 // middleware
 app.use(cors());
@@ -28,8 +25,8 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function verifyToken(req, res, next) {
-    if (req.headers?.authorization?.startsWith('Bearer ')) {
-        const idToken = req.headers.authorization.split('Bearer ')[1];
+    if (req.headers?.authorization?.startsWith('Bearer')) {
+        const idToken = req.headers.authorization.split('Bearer')[1];
         try {
             const decodedUser = await admin.auth().verifyIdToken(idToken);
             req.decodedUserEmail = decodedUser.email;
@@ -96,9 +93,7 @@ async function run() {
             console.log(result, 'delete')
 
             res.json(result);
-
         })
-
     }
     finally {
         // await client.close();
