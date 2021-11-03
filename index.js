@@ -3,18 +3,18 @@ const { MongoClient } = require('mongodb');
 require('dotenv').config();
 const cors = require('cors');
 const ObjectID = require('mongodb').ObjectId;
-// var admin = require("firebase-admin");
+var admin = require("firebase-admin");
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 // firebase admin initialization 
 
-// var serviceAccount = require("./tourism-492c1-firebase-adminsdk-ktcry-79642fb331.json");
+var serviceAccount = require("./tourism-492c1-firebase-adminsdk-ktcry-57e13eaf0b.json");
 
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount)
-// });
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 // middleware
 app.use(cors());
