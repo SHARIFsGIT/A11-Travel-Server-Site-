@@ -64,6 +64,21 @@ async function run() {
         });
 
         // Add Orders API
+        // app.get('/booked_service', verifyToken, async (req, res) => {
+        //     const email = req.query.email;
+        //     if (req.decodedUserEmail === email) {
+        //         const query = { email: email };
+        //         const cursor = orderCollection.find(query);
+        //         const orders = await cursor.toArray();
+        //         res.json(orders);
+        //     }
+        //     else {
+        //         res.status(401).json({ message: 'User not authorized' })
+        //     }
+
+        // });
+
+        // jh Add Orders API
         app.get('/booked_service', verifyToken, async (req, res) => {
             const email = req.query.email;
             if (req.decodedUserEmail === email) {
