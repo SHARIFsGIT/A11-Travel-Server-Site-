@@ -3,18 +3,18 @@ const { MongoClient } = require('mongodb');
 require('dotenv').config();
 const cors = require('cors');
 const ObjectID = require('mongodb').ObjectId;
-// var admin = require("firebase-admin");
+var admin = require("firebase-admin");
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 // firebase admin initialization 
 
-// var serviceAccount = require("./tourism-492c1-firebase-adminsdk-ktcry-57e13eaf0b.json");
+var serviceAccount = require("./tourdeworld-f9a0e-firebase-adminsdk-msn1h-dd68206f1b.json");
 
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount)
-// });
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 // middleware
 app.use(cors());
@@ -43,7 +43,7 @@ async function verifyToken(req, res, next) {
 async function run() {
     try {
         await client.connect();
-        const database = client.db('tour_de_world');
+        const database = client.db('tourdeworld2021');
         const productCollection = database.collection('services');
         const orderCollection = database.collection('booked_service');
 
